@@ -11,10 +11,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { owners } from "../data/mock";
+import type { Owner } from "../types";
 import { OwnerRow } from "./owner-row";
 
-export function OwnersTable() {
+interface OwnersTableProps {
+  owners: Owner[];
+}
+
+export function OwnersTable({
+  owners,
+}: OwnersTableProps) {
   return (
     <Card>
       <CardContent className="p-0">

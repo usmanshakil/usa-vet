@@ -1,13 +1,5 @@
-import {
-  OwnerToolbar,
-  OwnersTable,
-} from "@/features/owners";
+import { OwnersClient } from "@/features/owners";
 
 export default function OwnersPage() {
-  return (
-    <div className="space-y-6">
-      <OwnerToolbar />
-      <OwnersTable />
-    </div>
-  );
+  return <OwnersClient />;
 }
