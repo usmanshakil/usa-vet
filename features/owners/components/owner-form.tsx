@@ -1,21 +1,15 @@
 "use client";
 
-import { useState } from "react";
-
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { ownerService } from "../services/owner.service";
 
 import {
   FormActions,
   SubmitButton,
 } from "@/components/forms";
 
-import {
-  OwnerFormValues,
-} from "../schemas/owner-schema";
-
 import { useOwnerForm } from "../hooks/use-owner-form";
+import { useCreateOwner } from "../hooks/use-create-owner";
 
 interface OwnerFormProps {
   onClose: () => void;
@@ -24,8 +18,6 @@ interface OwnerFormProps {
 export function OwnerForm({
   onClose,
 }: OwnerFormProps) {
-  const [loading, setLoading] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -33,22 +25,14 @@ export function OwnerForm({
     formState: { errors },
   } = useOwnerForm();
 
-  async function onSubmit(values: OwnerFormValues) {
-    try {
-      setLoading(true);
+  const createOwner = useCreateOwner();
 
-      await ownerService.create(values);
+  async function onSubmit(values: any) {
+    await createOwner.mutateAsync(values);
 
-      reset();
+    reset();
 
-      onClose();
-    } catch (error) {
-      console.error("Failed to create owner:", error);
-
-      // Later we'll show a toast notification here.
-    } finally {
-      setLoading(false);
-    }
+    onClose();
   }
 
   return (
@@ -68,7 +52,7 @@ export function OwnerForm({
         />
 
         {errors.name && (
-          <p className="text-sm font-medium text-destructive">
+          <p className="text-sm text-red-500">
             {errors.name.message}
           </p>
         )}
@@ -87,7 +71,7 @@ export function OwnerForm({
         />
 
         {errors.email && (
-          <p className="text-sm font-medium text-destructive">
+          <p className="text-sm text-red-500">
             {errors.email.message}
           </p>
         )}
@@ -105,16 +89,16 @@ export function OwnerForm({
         />
 
         {errors.phone && (
-          <p className="text-sm font-medium text-destructive">
+          <p className="text-sm text-red-500">
             {errors.phone.message}
           </p>
         )}
       </div>
 
-      <FormActions
-        onCancel={onClose}
-      >
-        <SubmitButton loading={loading}>
+      <FormActions onCancel={onClose}>
+        <SubmitButton
+          loading={createOwner.isPending}
+        >
           Save Owner
         </SubmitButton>
       </FormActions>
