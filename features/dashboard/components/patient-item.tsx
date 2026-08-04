@@ -11,10 +11,10 @@ export function PatientItem({
   patient,
 }: PatientItemProps) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border p-4 transition-colors hover:bg-slate-50">
+    <div className="flex items-center gap-4 rounded-xl border p-4 transition-all hover:bg-slate-50 hover:shadow-sm">
       <Avatar>
         <AvatarFallback>
-          {patient.name.slice(0, 2).toUpperCase()}
+          🐾
         </AvatarFallback>
       </Avatar>
 

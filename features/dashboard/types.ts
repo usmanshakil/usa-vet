@@ -16,6 +16,8 @@ export interface Appointment {
   owner: string;
   veterinarian: string;
   type: string;
+  duration: number;
+  room: string;
   status: "confirmed" | "pending" | "completed";
 }
 
@@ -26,4 +28,12 @@ export interface Patient {
   breed: string;
   owner: string;
   lastVisit: string;
+}
+
+export interface Activity {
+  id: number;
+ title: string;
+  description: string;
+  time: string;
+  type: "appointment" | "patient" | "invoice";
 }
