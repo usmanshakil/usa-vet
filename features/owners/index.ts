@@ -9,3 +9,4 @@ export * from "./components/owner-status-filter";
 export * from "./components/owner-toolbar";
 export * from "./components/owners-table";
 export * from "./components/owners-client";
+export * from "./components/owner-columns";
