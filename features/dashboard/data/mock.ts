@@ -5,7 +5,9 @@ import {
   Users,
 } from "lucide-react";
 
-export const dashboardStats = [
+import type { Appointment, DashboardStat } from "../types";
+
+export const dashboardStats: DashboardStat[] = [
   {
     id: 1,
     title: "Today's Appointments",
@@ -37,5 +39,35 @@ export const dashboardStats = [
     change: "+6%",
     trend: "up",
     icon: Users,
+  },
+];
+
+export const todaysAppointments: Appointment[] = [
+  {
+    id: 1,
+    time: "09:00",
+    pet: "Bella",
+    owner: "John Smith",
+    veterinarian: "Dr. Sarah Johnson",
+    type: "Vaccination",
+    status: "confirmed",
+  },
+  {
+    id: 2,
+    time: "10:00",
+    pet: "Max",
+    owner: "Emily Brown",
+    veterinarian: "Dr. Michael Lee",
+    type: "Surgery Consultation",
+    status: "pending",
+  },
+  {
+    id: 3,
+    time: "11:30",
+    pet: "Luna",
+    owner: "David Wilson",
+    veterinarian: "Dr. Sarah Johnson",
+    type: "Annual Checkup",
+    status: "completed",
   },
 ];
