@@ -7,6 +7,10 @@ import { useOwners } from "../hooks/use-owners";
 import { OwnerToolbar } from "./owner-toolbar";
 import { OwnersTable } from "./owners-table";
 
+import { LoadingState } from "@/components/query/loading-state";
+import { ErrorState } from "@/components/query/error-state";
+import { EmptyState } from "@/components/query/empty-state";
+
 export function OwnersClient() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
@@ -15,7 +19,7 @@ export function OwnersClient() {
     data: owners = [],
     isLoading,
     isError,
-    error,
+    refetch,
   } = useOwners();
 
   const filteredOwners = useMemo(() => {
@@ -34,16 +38,37 @@ export function OwnersClient() {
 
   if (isLoading) {
     return (
-      <div className="p-6 text-sm text-muted-foreground">
-        Loading owners...
-      </div>
+      <LoadingState
+        title="Loading owners..."
+      />
     );
   }
 
   if (isError) {
     return (
-      <div className="p-6 text-sm text-destructive">
-        {(error as Error).message || "Failed to load owners."}
+      <ErrorState
+        title="Unable to load owners"
+        description="An unexpected error occurred while loading owners."
+        onRetry={() => refetch()}
+      />
+    );
+  }
+
+  if (filteredOwners.length === 0) {
+    return (
+      <div className="space-y-6">
+        <OwnerToolbar
+          search={search}
+          status={status}
+          total={0}
+          onSearchChange={setSearch}
+          onStatusChange={setStatus}
+        />
+
+        <EmptyState
+          title="No owners found"
+          description="Try adjusting your search or add your first owner."
+        />
       </div>
     );
   }
