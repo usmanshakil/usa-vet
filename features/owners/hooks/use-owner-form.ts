@@ -16,7 +16,6 @@ export function useOwnerForm() {
       name: "",
       email: "",
       phone: "",
-      status: "Active",
     },
 
     mode: "onBlur",

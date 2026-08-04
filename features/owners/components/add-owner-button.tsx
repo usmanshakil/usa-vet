@@ -1,12 +1,7 @@
-import { Plus } from "lucide-react";
+"use client";
 
-import { Button } from "@/components/ui/button";
+import { AddOwnerDialog } from "./add-owner-dialog";
 
 export function AddOwnerButton() {
-  return (
-    <Button className="gap-2">
-      <Plus className="h-4 w-4" />
-      Add Owner
-    </Button>
-  );
+  return <AddOwnerDialog />;
 }
