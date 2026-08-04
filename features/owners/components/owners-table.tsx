@@ -1,12 +1,45 @@
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+} from "@/components/ui/card";
+
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+import { owners } from "../data/mock";
+import { OwnerRow } from "./owner-row";
 
 export function OwnersTable() {
   return (
     <Card>
-      <CardContent className="flex h-72 items-center justify-center">
-        <p className="text-sm text-slate-500">
-          Owners table will be implemented in the next PR.
-        </p>
+      <CardContent className="p-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Owner</TableHead>
+              <TableHead>Phone</TableHead>
+              <TableHead>Pets</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">
+                Actions
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {owners.map((owner) => (
+              <OwnerRow
+                key={owner.id}
+                owner={owner}
+              />
+            ))}
+          </TableBody>
+        </Table>
       </CardContent>
     </Card>
   );
