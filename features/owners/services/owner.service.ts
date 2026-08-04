@@ -1,15 +1,16 @@
+import type { Owner } from "../types";
 import type { OwnerFormValues } from "../schemas/owner-schema";
 
 import { ownerRepository } from "../repositories/owner.repository";
 
 export const ownerService = {
-  async create(data: OwnerFormValues) {
-    // Future business rules belong here.
-    // Example:
-    // - normalize phone numbers
-    // - trim whitespace
-    // - check duplicates
+  async getAll(): Promise<Owner[]> {
+    return ownerRepository.getAll();
+  },
 
+  async create(
+    data: OwnerFormValues
+  ): Promise<Owner> {
     return ownerRepository.create({
       ...data,
       name: data.name.trim(),

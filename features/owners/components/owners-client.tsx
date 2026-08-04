@@ -2,13 +2,21 @@
 
 import { useMemo, useState } from "react";
 
-import { owners } from "../data/mock";
+import { useOwners } from "../hooks/use-owners";
+
 import { OwnerToolbar } from "./owner-toolbar";
 import { OwnersTable } from "./owners-table";
 
 export function OwnersClient() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
+
+  const {
+    data: owners = [],
+    isLoading,
+    isError,
+    error,
+  } = useOwners();
 
   const filteredOwners = useMemo(() => {
     return owners.filter((owner) => {
@@ -22,7 +30,23 @@ export function OwnersClient() {
 
       return matchesSearch && matchesStatus;
     });
-  }, [search, status]);
+  }, [owners, search, status]);
+
+  if (isLoading) {
+    return (
+      <div className="p-6 text-sm text-muted-foreground">
+        Loading owners...
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 text-sm text-destructive">
+        {(error as Error).message || "Failed to load owners."}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

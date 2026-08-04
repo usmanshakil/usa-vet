@@ -1,14 +1,29 @@
+import type { Owner } from "../types";
 import type { OwnerFormValues } from "../schemas/owner-schema";
 
+import { owners } from "../data/mock";
+
+const mockOwners: Owner[] = [...owners];
+
 export const ownerApi = {
-  async create(data: OwnerFormValues) {
-    // Simulate an API request
+  async getAll(): Promise<Owner[]> {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    return [...mockOwners];
+  },
+
+  async create(data: OwnerFormValues): Promise<Owner> {
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    return {
-      id: crypto.randomUUID(),
-      ...data,
+    const owner: Owner = {
+      id: Date.now(),
       petCount: 0,
+      status: "Active",
+      ...data,
     };
+
+    mockOwners.unshift(owner);
+
+    return owner;
   },
 };
