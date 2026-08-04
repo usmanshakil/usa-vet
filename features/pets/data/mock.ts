@@ -1,0 +1,40 @@
+import type { Pet } from "../types";
+
+export const pets: Pet[] = [
+  {
+    id: 1,
+    name: "Bella",
+    ownerId: 1,
+    ownerName: "John Smith",
+    species: "Dog",
+    breed: "Golden Retriever",
+    gender: "Female",
+    age: "4 years",
+    weight: "28 kg",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Max",
+    ownerId: 2,
+    ownerName: "Emily Brown",
+    species: "Cat",
+    breed: "Persian",
+    gender: "Male",
+    age: "2 years",
+    weight: "5.2 kg",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Charlie",
+    ownerId: 3,
+    ownerName: "David Wilson",
+    species: "Dog",
+    breed: "German Shepherd",
+    gender: "Male",
+    age: "6 years",
+    weight: "34 kg",
+    status: "Inactive",
+  },
+];
