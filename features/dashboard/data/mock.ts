@@ -1,15 +1,19 @@
 import {
   CalendarDays,
+  CalendarPlus,
+  CircleDollarSign,
   DollarSign,
   PawPrint,
+  UserPlus,
   Users,
 } from "lucide-react";
 
 import type {
+  Activity,
   Appointment,
   DashboardStat,
   Patient,
-  Activity
+  QuickAction,
 } from "../types";
 
 export const dashboardStats: DashboardStat[] = [
@@ -131,5 +135,32 @@ export const recentActivities: Activity[] = [
     description: "Emily Brown",
     time: "1 hour ago",
     type: "invoice",
+  },
+];
+
+export const quickActions: QuickAction[] = [
+  {
+    id: 1,
+    title: "New Appointment",
+    icon: CalendarPlus,
+    href: "/appointments/new",
+  },
+  {
+    id: 2,
+    title: "Add Owner",
+    icon: UserPlus,
+    href: "/owners/new",
+  },
+  {
+    id: 3,
+    title: "Register Pet",
+    icon: PawPrint,
+    href: "/pets/new",
+  },
+  {
+    id: 4,
+    title: "Create Invoice",
+    icon: CircleDollarSign,
+    href: "/billing/new",
   },
 ];

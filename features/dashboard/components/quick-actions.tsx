@@ -1,4 +1,12 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { quickActions } from "../data/mock";
+import { QuickActionButton } from "./quick-action-button";
 
 export function QuickActions() {
   return (
@@ -7,8 +15,13 @@ export function QuickActions() {
         <CardTitle>Quick Actions</CardTitle>
       </CardHeader>
 
-      <CardContent>
-        Coming in PR #8
+      <CardContent className="space-y-3">
+        {quickActions.map((action) => (
+          <QuickActionButton
+            key={action.id}
+            action={action}
+          />
+        ))}
       </CardContent>
     </Card>
   );

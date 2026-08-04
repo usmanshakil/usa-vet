@@ -37,3 +37,10 @@ export interface Activity {
   time: string;
   type: "appointment" | "patient" | "invoice";
 }
+
+export interface QuickAction {
+  id: number;
+  title: string;
+  icon: LucideIcon;
+  href: string;
+}
