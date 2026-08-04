@@ -1,24 +1,33 @@
 "use client";
 
-import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
-import { queryClient } from "./query-client";
-
-interface ProvidersProps {
-  children: React.ReactNode;
-}
+import { ToastProvider } from "@/components/providers/toast-provider";
 
 export function Providers({
   children,
-}: ProvidersProps) {
+}: {
+  children: React.ReactNode;
+}) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 1000,
+            retry: 1,
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  );
+
   return (
     <QueryClientProvider client={queryClient}>
       {children}
 
-      <ReactQueryDevtools
-        initialIsOpen={false}
-      />
+      <ToastProvider />
     </QueryClientProvider>
   );
 }
