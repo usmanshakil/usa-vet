@@ -11,23 +11,26 @@ export function PatientItem({
   patient,
 }: PatientItemProps) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border p-4 transition-all hover:bg-slate-50 hover:shadow-sm">
-      <Avatar>
-        <AvatarFallback>
-          🐾
+    <div className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+      <Avatar className="h-11 w-11">
+        <AvatarFallback className="bg-slate-100 font-semibold text-slate-600 transition-colors group-hover:bg-blue-100 group-hover:text-blue-700">
+          {patient.name
+            .split(" ")
+            .map((word) => word[0])
+            .join("")}
         </AvatarFallback>
       </Avatar>
 
-      <div className="flex-1">
-        <h4 className="font-semibold">
+      <div className="min-w-0 flex-1">
+        <h4 className="text-sm font-semibold text-slate-900">
           {patient.name}
         </h4>
 
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-slate-600">
           {patient.breed}
         </p>
 
-        <p className="text-xs text-muted-foreground">
+        <p className="mt-1 text-xs text-slate-500">
           Owner: {patient.owner}
         </p>
       </div>
@@ -37,7 +40,7 @@ export function PatientItem({
           {patient.species}
         </Badge>
 
-        <p className="mt-2 text-xs text-muted-foreground">
+        <p className="mt-2 text-xs font-medium text-slate-400">
           {patient.lastVisit}
         </p>
       </div>

@@ -37,10 +37,10 @@ export function ActivityItem({
   const Icon = config.icon;
 
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+    <div className="group flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
       <div
         className={cn(
-          "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
+          "flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-110",
           config.wrapper
         )}
       >
