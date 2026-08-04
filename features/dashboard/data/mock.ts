@@ -5,7 +5,11 @@ import {
   Users,
 } from "lucide-react";
 
-import type { Appointment, DashboardStat } from "../types";
+import type {
+  Appointment,
+  DashboardStat,
+  Patient,
+} from "../types";
 
 export const dashboardStats: DashboardStat[] = [
   {
@@ -69,5 +73,32 @@ export const todaysAppointments: Appointment[] = [
     veterinarian: "Dr. Sarah Johnson",
     type: "Annual Checkup",
     status: "completed",
+  },
+];
+
+export const recentPatients: Patient[] = [
+  {
+    id: 1,
+    name: "Bella",
+    species: "Dog",
+    breed: "Golden Retriever",
+    owner: "John Smith",
+    lastVisit: "Today",
+  },
+  {
+    id: 2,
+    name: "Max",
+    species: "Cat",
+    breed: "Persian",
+    owner: "Emily Brown",
+    lastVisit: "Yesterday",
+  },
+  {
+    id: 3,
+    name: "Luna",
+    species: "Dog",
+    breed: "German Shepherd",
+    owner: "David Wilson",
+    lastVisit: "2 days ago",
   },
 ];

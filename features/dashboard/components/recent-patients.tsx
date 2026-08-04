@@ -1,14 +1,32 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+} from "@/components/ui/card";
+
+import { WidgetHeader } from "./shared/widget-header";
+import { recentPatients } from "../data/mock";
+import { PatientItem } from "./patient-item";
 
 export function RecentPatients() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Patients</CardTitle>
+        <WidgetHeader
+          title="Recent Patients"
+          href="/pets"
+        />
       </CardHeader>
 
-      <CardContent>
-        Coming in PR #6
+      <CardContent className="space-y-4">
+        {recentPatients.map((patient) => (
+          <PatientItem
+            key={patient.id}
+            patient={patient}
+          />
+        ))}
       </CardContent>
     </Card>
   );

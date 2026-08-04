@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "./shared/status-badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import type { Appointment } from "../types";
@@ -6,12 +6,6 @@ import type { Appointment } from "../types";
 interface AppointmentItemProps {
   appointment: Appointment;
 }
-
-const statusVariant = {
-  confirmed: "bg-emerald-100 text-emerald-700 hover:bg-emerald-100",
-  pending: "bg-amber-100 text-amber-700 hover:bg-amber-100",
-  completed: "bg-slate-100 text-slate-700 hover:bg-slate-100",
-};
 
 export function AppointmentItem({
   appointment,
@@ -36,11 +30,7 @@ export function AppointmentItem({
             {appointment.pet}
           </h4>
 
-          <Badge
-            className={statusVariant[appointment.status]}
-          >
-            {appointment.status}
-          </Badge>
+          <StatusBadge status={appointment.status} />
         </div>
 
         <p className="text-sm text-muted-foreground">

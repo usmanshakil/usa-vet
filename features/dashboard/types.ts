@@ -18,3 +18,12 @@ export interface Appointment {
   type: string;
   status: "confirmed" | "pending" | "completed";
 }
+
+export interface Patient {
+  id: number;
+  name: string;
+  species: "Dog" | "Cat" | "Bird";
+  breed: string;
+  owner: string;
+  lastVisit: string;
+}
