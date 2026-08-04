@@ -1,7 +1,5 @@
-import { MoreHorizontal } from "lucide-react";
-
+import { OwnerActionsMenu } from "./owner-actions-menu";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   TableCell,
   TableRow,
@@ -47,12 +45,7 @@ export function OwnerRow({
       </TableCell>
 
       <TableCell className="text-right">
-        <Button
-          variant="ghost"
-          size="icon"
-        >
-          <MoreHorizontal className="h-4 w-4" />
-        </Button>
+        <OwnerActionsMenu owner={owner} />
       </TableCell>
     </TableRow>
   );
