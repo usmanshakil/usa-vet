@@ -1,13 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { AddPetDialog } from "./add-pet-dialog";
 
 export function AddPetButton() {
-  return (
-    <Button>
-      <Plus className="mr-2 h-4 w-4" />
-      Add Pet
-    </Button>
-  );
+  return <AddPetDialog />;
 }

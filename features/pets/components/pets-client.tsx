@@ -39,7 +39,6 @@ export function PetsClient() {
     return (
       <LoadingState
         title="Loading pets..."
-        description="Please wait while we fetch pets."
       />
     );
   }
