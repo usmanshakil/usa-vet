@@ -8,9 +8,8 @@ import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 import { EmptyState } from "@/components/query/empty-state";
 
-import { Input } from "@/components/ui/input";
-
 import { PetsTable } from "./pets-table";
+import { PetToolbar } from "./pet-toolbar";
 
 export function PetsClient() {
   const [search, setSearch] = useState("");
@@ -61,26 +60,11 @@ export function PetsClient() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight">
-            Pets
-          </h1>
-
-          <p className="text-sm text-muted-foreground">
-            Manage pets registered in your clinic.
-          </p>
-        </div>
-
-        <Input
-          placeholder="Search pets..."
-          value={search}
-          onChange={(e) =>
-            setSearch(e.target.value)
-          }
-          className="w-full md:w-80"
-        />
-      </div>
+      <PetToolbar
+        search={search}
+        total={filteredPets.length}
+        onSearchChange={setSearch}
+      />
 
       {filteredPets.length === 0 ? (
         <EmptyState
