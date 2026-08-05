@@ -15,6 +15,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import { PetForm } from "./pet-form";
+
 export function AddPetDialog() {
   const [open, setOpen] = useState(false);
 
@@ -43,9 +45,9 @@ export function AddPetDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="py-8 text-center text-sm text-muted-foreground">
-          Pet form will be added in the next PR.
-        </div>
+        <PetForm
+          onClose={() => setOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   );

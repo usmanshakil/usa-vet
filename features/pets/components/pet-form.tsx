@@ -11,12 +11,10 @@ import {
 } from "@/components/forms";
 
 import {
-  usePetForm,
-} from "../hooks/use-pet-form";
-
-import type {
   PetFormValues,
 } from "../schemas/pet-schema";
+
+import { usePetForm } from "../hooks/use-pet-form";
 
 interface PetFormProps {
   onClose: () => void;
@@ -52,9 +50,7 @@ export function PetForm({
 
   return (
     <form
-      onSubmit={handleSubmit(
-        onSubmit
-      )}
+      onSubmit={handleSubmit(onSubmit)}
       className="space-y-5"
     >
       <FormField
