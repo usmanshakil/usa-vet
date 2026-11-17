@@ -1,6 +1,7 @@
+
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -15,11 +16,11 @@ export const ownerColumns: ColumnDef<Owner>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Owner"
-      />
+      <DataTableColumnHeader column={column} title="Owner" />
     ),
+    meta: {
+      label: "Owner",
+    },
     cell: ({ row }) => {
       const owner = row.original;
 
@@ -37,7 +38,6 @@ export const ownerColumns: ColumnDef<Owner>[] = [
 
           <div>
             <p className="font-medium">{owner.name}</p>
-
             <p className="text-sm text-slate-500">
               {owner.email}
             </p>
@@ -46,45 +46,37 @@ export const ownerColumns: ColumnDef<Owner>[] = [
       );
     },
   },
-
   {
     accessorKey: "phone",
-
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Phone"
-      />
+      <DataTableColumnHeader column={column} title="Phone" />
     ),
+    meta: {
+      label: "Phone",
+    },
   },
-
   {
     accessorKey: "petCount",
-
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Pets"
-      />
+      <DataTableColumnHeader column={column} title="Pets" />
     ),
-
+    meta: {
+      label: "Pets",
+    },
     cell: ({ row }) => (
       <Badge variant="secondary">
         {row.original.petCount}
       </Badge>
     ),
   },
-
   {
     accessorKey: "status",
-
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Status"
-      />
+      <DataTableColumnHeader column={column} title="Status" />
     ),
-
+    meta: {
+      label: "Status",
+    },
     cell: ({ row }) => (
       <Badge
         variant={
@@ -97,17 +89,22 @@ export const ownerColumns: ColumnDef<Owner>[] = [
       </Badge>
     ),
   },
-
   {
     id: "actions",
-
+    header: () => (
+      <div className="text-right">Actions</div>
+    ),
+    meta: {
+      label: "Actions",
+    },
+    enableHiding: false,
+    enableSorting: false,
     cell: () => (
-      <Button
-        variant="ghost"
-        size="icon-sm"
-      >
-        <MoreHorizontal className="h-4 w-4" />
-      </Button>
+      <div className="flex justify-end">
+        <Button variant="ghost" size="icon-sm">
+          <MoreHorizontal className="h-4 w-4" />
+        </Button>
+      </div>
     ),
   },
 ];
