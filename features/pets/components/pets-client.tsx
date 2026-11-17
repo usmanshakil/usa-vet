@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo, useState } from "react";
@@ -13,6 +14,7 @@ import { PetToolbar } from "./pet-toolbar";
 
 export function PetsClient() {
   const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("all");
 
   const {
     data: pets = [],
@@ -23,24 +25,24 @@ export function PetsClient() {
   } = usePets();
 
   const filteredPets = useMemo(() => {
-    const term = search.toLowerCase();
+    const term = search.trim().toLowerCase();
 
     return pets.filter((pet) => {
-      return (
+      const matchesSearch =
         pet.name.toLowerCase().includes(term) ||
         pet.ownerName.toLowerCase().includes(term) ||
         pet.species.toLowerCase().includes(term) ||
-        pet.breed.toLowerCase().includes(term)
-      );
+        pet.breed.toLowerCase().includes(term);
+
+      const matchesStatus =
+        status === "all" || pet.status === status;
+
+      return matchesSearch && matchesStatus;
     });
-  }, [pets, search]);
+  }, [pets, search, status]);
 
   if (isLoading) {
-    return (
-      <LoadingState
-        title="Loading pets..."
-      />
-    );
+    return <LoadingState title="Loading pets..." />;
   }
 
   if (isError) {
@@ -61,14 +63,16 @@ export function PetsClient() {
     <div className="space-y-6">
       <PetToolbar
         search={search}
+        status={status}
         total={filteredPets.length}
         onSearchChange={setSearch}
+        onStatusChange={setStatus}
       />
 
       {filteredPets.length === 0 ? (
         <EmptyState
           title="No pets found"
-          description="Try changing your search."
+          description="Try changing your search or status filter."
         />
       ) : (
         <PetsTable pets={filteredPets} />

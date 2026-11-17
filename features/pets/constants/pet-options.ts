@@ -35,7 +35,7 @@ export const SPECIES_OPTIONS = [
     label: "Other",
     value: "Other",
   },
-];
+] as const;
 
 export const GENDER_OPTIONS = [
   {
@@ -46,7 +46,7 @@ export const GENDER_OPTIONS = [
     label: "Female",
     value: "Female",
   },
-];
+] as const;
 
 export const STATUS_OPTIONS = [
   {
@@ -57,4 +57,4 @@ export const STATUS_OPTIONS = [
     label: "Inactive",
     value: "Inactive",
   },
-];
+] as const;

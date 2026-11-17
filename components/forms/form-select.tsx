@@ -54,10 +54,13 @@ export function FormSelect({
         value={value}
         onValueChange={onValueChange}
       >
-        <SelectTrigger id={htmlFor}>
-          <SelectValue
-            placeholder={placeholder}
-          />
+        <SelectTrigger
+          id={htmlFor}
+          className="w-full"
+        >
+          {options.find((option) => option.value === value)?.label ?? (
+            <SelectValue placeholder={placeholder} />
+          )}
         </SelectTrigger>
 
         <SelectContent>
